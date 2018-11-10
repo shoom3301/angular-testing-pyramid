@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {IQuote} from '@models/qoute.model';
 
 @Component({
   selector: 'quotes',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuotesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: ActivatedRoute) { }
 
   ngOnInit() {
+    const quotes = this.router.snapshot.data as IQuote[];
+
+    console.log(quotes);
   }
 
 }

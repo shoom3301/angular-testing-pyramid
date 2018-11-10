@@ -27,20 +27,11 @@
       "@models/*": [
         "src/models/*"
       ],
-      "@actions/*": [
-        "src/store/actions/*"
+      "@store/*": [
+        "src/store/*"
       ],
-      "@reducers/*": [
-        "src/store/reducers/*"
-      ],
-      "@selectors/*": [
-        "src/store/selectors/*"
-      ],
-      "@states/*": [
-        "src/store/states/*"
-      ],
-      "@services/*": [
-        "src/services/*"
+      "@router/*": [
+        "src/router/*"
       ]
     }
   }

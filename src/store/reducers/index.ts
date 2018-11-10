@@ -1,4 +1,4 @@
-import {COUNTER_STATE} from '@states/counter.state';
+import {COUNTER_STATE} from '@store/states/counter.state';
 import {counterReducer} from './counter.reducer';
 import {ActionReducerMap} from '@ngrx/store';
 import {InjectionToken} from '@angular/core';
