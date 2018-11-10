@@ -1,12 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { StoreModule } from '@ngrx/store';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import {reducersProvider, reducersToken} from '../../store/reducers/index';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {reducersProvider, reducersToken} from '../../store/reducers';
 import {environment} from '../../environments/environment';
-import { QuotesComponent } from '../quotes/quotes.component';
 
 const storeDevTools = [];
 
@@ -16,8 +15,7 @@ if (!environment.production) {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    QuotesComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -32,4 +30,5 @@ if (!environment.production) {
     AppComponent
   ]
 })
-export class AppModule { }
+export class AppModule {
+}
