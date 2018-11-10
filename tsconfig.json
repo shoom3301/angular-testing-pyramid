@@ -16,6 +16,32 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@modules/*": [
+        "src/modules/*"
+      ],
+      "@mocks/*": [
+        "src/mocks/*"
+      ],
+      "@models/*": [
+        "src/models/*"
+      ],
+      "@actions/*": [
+        "src/store/actions/*"
+      ],
+      "@reducers/*": [
+        "src/store/reducers/*"
+      ],
+      "@selectors/*": [
+        "src/store/selectors/*"
+      ],
+      "@states/*": [
+        "src/store/states/*"
+      ],
+      "@services/*": [
+        "src/services/*"
+      ]
+    }
   }
 }

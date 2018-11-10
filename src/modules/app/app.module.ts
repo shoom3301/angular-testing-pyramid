@@ -4,7 +4,7 @@ import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {reducersProvider, reducersToken} from '../../store/reducers';
+import {reducersProvider, reducersToken} from '@reducers/index';
 import {environment} from '../../environments/environment';
 
 const storeDevTools = [];

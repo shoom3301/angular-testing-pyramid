@@ -1,5 +1,5 @@
-import {CounterActions, CounterActionTypes, Reset} from '../actions/counter.action';
-import {counterInitialState, ICounterState} from '../states/counter.state';
+import {CounterActions, CounterActionTypes, Reset} from '@actions/counter.action';
+import {counterInitialState, ICounterState} from '@states/counter.state';
 
 export function counterReducer(state: ICounterState = counterInitialState,
                                action: CounterActions): ICounterState {
