@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {QuotesActionTypes, QuotesFetched} from '@store/actions/quotes.action';
 import {switchMap} from 'rxjs/operators';
-import {quotesMock} from '@mocks/qoutes.mock';
+import {QuotesService} from '../../services/quotes.service';
 
 @Injectable()
 export class QuotesEffect {
@@ -10,11 +10,13 @@ export class QuotesEffect {
   onFetch$ = this.actions$
     .pipe(
       ofType(QuotesActionTypes.FETCH),
-      switchMap(() => [
-        new QuotesFetched(quotesMock)
+      switchMap(() => this.quotesService.getQuotesList()),
+      switchMap(quotes => [
+        new QuotesFetched(quotes)
       ])
     );
 
-  constructor(private actions$: Actions) {
+  constructor(private actions$: Actions,
+              private quotesService: QuotesService) {
   }
 }
