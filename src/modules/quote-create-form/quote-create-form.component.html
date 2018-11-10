@@ -1,1 +1,15 @@
-Quote create form
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Текст:</label>
+    <br>
+    <textarea formControlName="text"></textarea>
+  </div>
+  <div>
+    <label>Автор:</label>
+    <br>
+    <input formControlName="author"/>
+  </div>
+  <div>
+    <button>Создать</button>
+  </div>
+</form>
