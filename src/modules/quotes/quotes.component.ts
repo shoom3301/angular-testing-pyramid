@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {IQuote} from '@models/qoute.model';
 
@@ -7,14 +7,9 @@ import {IQuote} from '@models/qoute.model';
   templateUrl: './quotes.component.html',
   styleUrls: ['./quotes.component.less']
 })
-export class QuotesComponent implements OnInit {
+export class QuotesComponent {
+  quotes = this.router.snapshot.data.quotes as IQuote[];
 
-  constructor(private router: ActivatedRoute) { }
-
-  ngOnInit() {
-    const quotes = this.router.snapshot.data as IQuote[];
-
-    console.log(quotes);
+  constructor(private router: ActivatedRoute) {
   }
-
 }
