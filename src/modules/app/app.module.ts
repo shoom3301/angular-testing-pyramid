@@ -6,6 +6,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {reducersProvider, reducersToken} from '@store/reducers/index';
 import {environment} from '../../environments/environment';
+import {EffectsModule} from '@ngrx/effects';
+import {effects} from '@store/effects';
 
 const storeDevTools = [];
 
@@ -21,6 +23,7 @@ if (!environment.production) {
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot(reducersToken),
+    EffectsModule.forRoot(effects),
     ...storeDevTools
   ],
   providers: [

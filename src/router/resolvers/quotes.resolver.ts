@@ -1,17 +1,26 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {IQuote} from '@models/qoute.model';
-import {Observable, of} from 'rxjs/index';
-import {quotesMock} from '@mocks/qoutes.mock';
+import {Observable} from 'rxjs/index';
+import {select, Store} from '@ngrx/store';
+import {QuotesFetch} from '@store/actions/quotes.action';
+import {getQuotes} from '@store/selectors/quotes.selector';
+import {first} from 'rxjs/internal/operators';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class QuotesResolver implements Resolve<IQuote[]> {
-  constructor() {}
+  constructor(private store: Store<any>) {
+  }
 
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<IQuote[]> {
-    return of(quotesMock);
+  resolve(route: ActivatedRouteSnapshot,
+          state: RouterStateSnapshot): Observable<IQuote[]> {
+    this.store.dispatch(new QuotesFetch());
+
+    return this.store.pipe(
+      select(getQuotes),
+      first() // without first() does not work (: Maybe because select() not rxjs function
+    );
   }
 }
