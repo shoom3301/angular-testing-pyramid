@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {ICounterState} from '../store/states/counter.state';
-import {Decrement, Increment, Reset} from '../store/actions/counter.action';
-import {getCounterCount} from '../store/selectors/counter.selector';
+import {ICounterState} from '../../store/states/counter.state';
+import {Decrement, Increment, Reset} from '../../store/actions/counter.action';
+import {getCounterCount} from '../../store/selectors/counter.selector';
 
 @Component({
   selector: 'app-root',
