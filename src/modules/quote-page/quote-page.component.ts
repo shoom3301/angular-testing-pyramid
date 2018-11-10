@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'quote-page',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuotePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: ActivatedRoute) {
+  }
 
   ngOnInit() {
+    console.log(this.router.snapshot.data);
   }
 
 }

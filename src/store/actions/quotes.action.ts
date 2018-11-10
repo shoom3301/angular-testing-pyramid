@@ -2,18 +2,35 @@ import { Action } from '@ngrx/store';
 import {IQuote} from '@models/qoute.model';
 
 export enum QuotesActionTypes {
-  FETCH = '[Quotes] Fetch',
-  FETCHED = '[Quotes] Fetched',
+  FETCH_ALL = '[Quotes] Fetch all',
+  FETCHED_ALL = '[Quotes] Fetched all',
+  FETCH_ONE = '[Quotes] Fetch one',
+  FETCHED_ONE = '[Quotes] Fetched one',
 }
 
-export class QuotesFetch implements Action {
-  readonly type = QuotesActionTypes.FETCH;
+export class QuotesFetchAll implements Action {
+  readonly type = QuotesActionTypes.FETCH_ALL;
 }
 
-export class QuotesFetched implements Action {
-  readonly type = QuotesActionTypes.FETCHED;
+export class QuotesFetchedAll implements Action {
+  readonly type = QuotesActionTypes.FETCHED_ALL;
 
   constructor(public readonly quotes: IQuote[]) {}
 }
 
-export type QuotesActions = QuotesFetch | QuotesFetched;
+export class QuotesFetchOne implements Action {
+  readonly type = QuotesActionTypes.FETCH_ONE;
+
+  constructor(public readonly id: number) {}
+}
+
+export class QuotesFetchedOne implements Action {
+  readonly type = QuotesActionTypes.FETCHED_ONE;
+
+  constructor(public readonly quote: IQuote) {}
+}
+
+export type QuotesActions = QuotesFetchAll
+  | QuotesFetchedAll
+  | QuotesFetchOne
+  | QuotesFetchedOne;

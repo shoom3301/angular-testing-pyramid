@@ -3,7 +3,7 @@ import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/rou
 import {IQuote} from '@models/qoute.model';
 import {Observable} from 'rxjs/index';
 import {select, Store} from '@ngrx/store';
-import {QuotesFetch} from '@store/actions/quotes.action';
+import {QuotesFetchAll} from '@store/actions/quotes.action';
 import {getQuotes} from '@store/selectors/quotes.selector';
 import {first} from 'rxjs/internal/operators';
 
@@ -16,7 +16,7 @@ export class QuotesResolver implements Resolve<IQuote[]> {
 
   resolve(route: ActivatedRouteSnapshot,
           state: RouterStateSnapshot): Observable<IQuote[]> {
-    this.store.dispatch(new QuotesFetch());
+    this.store.dispatch(new QuotesFetchAll());
 
     return this.store.pipe(
       select(getQuotes),

@@ -1,3 +1,6 @@
-<div *ngFor="let quote of quotes">{{quote.text}} <span>({{quote.author}})</span></div>
+<div *ngFor="let quote of quotes">
+  <a routerLink="/quote/{{quote.id}}">{{quote.text}}</a>
+  <span>({{quote.author}})</span>
+</div>
 <br>
 <quote-create-form></quote-create-form>

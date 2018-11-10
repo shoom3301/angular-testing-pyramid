@@ -1,18 +1,28 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {QuotesActionTypes, QuotesFetched} from '@store/actions/quotes.action';
+import {QuotesActionTypes, QuotesFetchedAll, QuotesFetchedOne, QuotesFetchOne} from '@store/actions/quotes.action';
 import {switchMap} from 'rxjs/operators';
-import {QuotesService} from '../../services/quotes.service';
+import {QuotesService} from '@services/quotes.service';
 
 @Injectable()
 export class QuotesEffect {
   @Effect()
-  onFetch$ = this.actions$
+  onFetchAll$ = this.actions$
     .pipe(
-      ofType(QuotesActionTypes.FETCH),
+      ofType(QuotesActionTypes.FETCH_ALL),
       switchMap(() => this.quotesService.getQuotesList()),
       switchMap(quotes => [
-        new QuotesFetched(quotes)
+        new QuotesFetchedAll(quotes)
+      ])
+    );
+
+  @Effect()
+  onFetchOne$ = this.actions$
+    .pipe(
+      ofType(QuotesActionTypes.FETCH_ONE),
+      switchMap(({id}: QuotesFetchOne) => this.quotesService.getQuoteById(id)),
+      switchMap(quote => [
+        new QuotesFetchedOne(quote)
       ])
     );
 

@@ -10,4 +10,8 @@ export class QuotesService {
   getQuotesList(): Observable<IQuote[]> {
     return of(quotesMock);
   }
+
+  getQuoteById(id: number): Observable<IQuote> {
+    return of(quotesMock.find(quote => quote.id === id));
+  }
 }
