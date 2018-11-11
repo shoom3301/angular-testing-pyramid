@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/index';
 import {select, Store} from '@ngrx/store';
 import {QuotesFetchAll} from '@store/actions/quotes.action';
 import {getQuotes} from '@store/selectors/quotes.selector';
-import {first} from 'rxjs/internal/operators';
+import {first, filter} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,8 @@ export class QuotesResolver implements Resolve<IQuote[]> {
 
     return this.store.pipe(
       select(getQuotes),
-      first() // without first() does not work (: Maybe because select() not rxjs function
+      filter(quotes => !!quotes),
+      first() // without first() does not work (:
     );
   }
 }

@@ -8,6 +8,7 @@ import {reducersProvider, reducersToken} from '@store/reducers/index';
 import {environment} from '../../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
 import {effects} from '@store/effects';
+import {HttpClientModule} from '@angular/common/http';
 
 const storeDevTools = [];
 
@@ -22,6 +23,7 @@ if (!environment.production) {
   imports: [
     BrowserModule,
     RoutingModule,
+    HttpClientModule,
     StoreModule.forRoot(reducersToken),
     EffectsModule.forRoot(effects),
     ...storeDevTools

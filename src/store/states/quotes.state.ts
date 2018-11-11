@@ -7,5 +7,5 @@ export interface IQuotesState {
 export const QUOTES_STATE = 'quotesState';
 
 export const quotesInitialState: IQuotesState = {
-  quotes: []
+  quotes: null
 };

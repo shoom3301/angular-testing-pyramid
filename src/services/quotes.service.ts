@@ -2,13 +2,16 @@ import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs/index';
 import {quotesMock} from '@mocks/qoutes.mock';
 import {IQuote} from '@models/qoute.model';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuotesService {
+  constructor(private httpClient: HttpClient) {}
+
   getQuotesList(): Observable<IQuote[]> {
-    return of(quotesMock);
+    return this.httpClient.get<IQuote[]>('/api/quotes');
   }
 
   getQuoteById(id: number): Observable<IQuote> {
