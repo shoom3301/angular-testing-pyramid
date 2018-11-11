@@ -1,6 +1,11 @@
-<div *ngFor="let quote of (quotesSource$ | async).quotes | async">
-  <a routerLink="/quote/{{quote.id}}">{{quote.text}}</a>
-  <span>({{quote.author}})</span>
+<h3 class="title">Цитаты великих людей</h3>
+<div class="quotes-list">
+  <a *ngFor="let quote of (quotesSource$ | async).quotes | async"
+     routerLink="/quote/{{quote.id}}"
+     class="quote-item">
+    <span class="quote-text">{{quote.text}}</span>
+    <br>
+    <span class="quote-author">{{quote.author}}</span>
+  </a>
 </div>
-<br>
 <quote-create-form></quote-create-form>
