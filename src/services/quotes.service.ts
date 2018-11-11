@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs/index';
-import {quotesMock} from '@mocks/qoutes.mock';
+import {Observable} from 'rxjs/index';
 import {IQuote} from '@models/qoute.model';
 import {HttpClient} from '@angular/common/http';
 
@@ -24,26 +23,6 @@ export class QuotesService implements IQuotesService {
   }
 
   create(text: string, author: string): Observable<IQuote> {
-    const quote: IQuote = {
-      id: this.generateId(),
-      text,
-      author
-    };
-
-    quotesMock.push(quote);
-
-    return of(quote);
-  }
-
-  private generateId(): number {
-    let minId = 0;
-
-    quotesMock.forEach(({id}) => {
-      if (id > minId) {
-        minId = id;
-      }
-    });
-
-    return minId + 1;
+    return this.httpClient.post<IQuote>('/api/quote', JSON.stringify({text, author}));
   }
 }

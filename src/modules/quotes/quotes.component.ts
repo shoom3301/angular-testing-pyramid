@@ -8,7 +8,7 @@ import {IQuote} from '@models/qoute.model';
   styleUrls: ['./quotes.component.less']
 })
 export class QuotesComponent {
-  quotes = this.router.snapshot.data.quotes as IQuote[];
+  quotesSource$ = this.router.data;
 
   constructor(private router: ActivatedRoute) {
   }

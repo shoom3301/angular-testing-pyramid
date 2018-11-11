@@ -1,4 +1,4 @@
-<div *ngFor="let quote of quotes">
+<div *ngFor="let quote of (quotesSource$ | async).quotes | async">
   <a routerLink="/quote/{{quote.id}}">{{quote.text}}</a>
   <span>({{quote.author}})</span>
 </div>
