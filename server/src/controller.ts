@@ -1,8 +1,13 @@
-import {readFileSync} from 'fs';
+import {readFileSync, writeFileSync} from 'fs';
 import {IncomingMessage, ServerResponse} from 'http';
 import {resolve} from 'path';
 import {parse} from 'querystring';
 import {IQuote} from './quote.model';
+
+interface IQuoteCreateRequest {
+  text: string;
+  author: string;
+}
 
 const quotesFilePath = resolve(__dirname, './quotes.json');
 
@@ -32,12 +37,87 @@ class QuotesController {
     this.sendJson(res, quote);
   }
 
-  create(req: IncomingMessage, res: ServerResponse) {
+  async create(req: IncomingMessage, res: ServerResponse) {
+    try {
+      const body = await this.getRequestJson<IQuoteCreateRequest>(req);
 
+      if (!this.createRequestIsValid(body)) {
+        res.statusCode = 400;
+        res.end();
+
+        return;
+      }
+
+      const quotes = this.loadQuotes();
+      const id = this.getMaxId(quotes) + 1;
+      const quote = {
+        id,
+        text: body.text,
+        author: body.author
+      };
+
+      quotes.push(quote);
+      this.saveQuotes(quotes);
+      this.sendJson(res, quote);
+
+    } catch (error) {
+      console.error('On quote create error: ', error);
+
+      res.statusCode = 500;
+      res.end();
+    }
+  }
+
+  private getMaxId(quotes: IQuote[]): number {
+    let minId = 0;
+
+    quotes.forEach(({id}) => {
+      if (id > minId) {
+        minId = id;
+      }
+    });
+
+    return minId;
+  }
+
+  private createRequestIsValid(requestBody: IQuoteCreateRequest): boolean {
+    return !!requestBody
+      && typeof requestBody.author === 'string'
+      && typeof requestBody.text === 'string'
+      && requestBody.author.length >= 2 && requestBody.author.length <= 64
+      && requestBody.text.length >= 2 && requestBody.text.length <= 256;
+  }
+
+  private async getRequestJson<T>(req: IncomingMessage): Promise<T> {
+    return new Promise<T>((resolve, reject) => {
+      let buffer = '';
+
+      req.on('data', (chunk: string) => {
+        buffer += chunk;
+      });
+
+      req.on('end', () => {
+        try {
+          const json = JSON.parse(buffer);
+
+          resolve(json);
+        } catch (e) {
+          reject(new Error('Request json parse error'));
+        }
+      });
+
+      req.on('error', error => {
+        reject(error);
+      })
+    });
   }
 
   private loadQuotes(): IQuote[] {
     return JSON.parse(readFileSync(quotesFilePath).toString());
+  }
+
+  private saveQuotes(quotes: IQuote[]) {
+    writeFileSync(quotesFilePath, JSON.stringify(quotes));
   }
 
   private sendJson(res: ServerResponse, json: any) {
