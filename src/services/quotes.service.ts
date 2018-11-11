@@ -20,7 +20,7 @@ export class QuotesService implements IQuotesService {
   }
 
   getQuoteById(id: number): Observable<IQuote> {
-    return of(quotesMock.find(quote => quote.id === id));
+    return this.httpClient.get<IQuote>('/api/quote', {params: {id: id.toString()}});
   }
 
   create(text: string, author: string): Observable<IQuote> {

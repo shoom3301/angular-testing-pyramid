@@ -14,6 +14,11 @@ export function quotesReducer(state: IQuotesState = quotesInitialState,
     case QuotesActionTypes.FETCHED_ONE: {
       const {quote} = action as QuotesFetchedOne;
       const {quotes} = state;
+      const existing = quotes.find(({id}) => id === quote.id);
+
+      if (existing) {
+        return state;
+      }
 
       return {
         quotes: sortQuotes([...quotes, quote])
