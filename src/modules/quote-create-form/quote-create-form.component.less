@@ -1,9 +1,61 @@
-.error {
-  display: none;
+:host {
+  display: block;
+  background: #f3f3f3;
+  border: 1px solid #e1e1e1;
+  padding: 20px;
 }
 
-form.ng-invalid:not(.ng-pristine) {
+.title {
+  margin: 0 0 20px 0;
+}
+
+.error {
+  display: none;
+  color: #d52315;
+  font-size: 13px;
+}
+
+.create-form.ng-invalid:not(.ng-pristine) {
   .error {
     display: block;
   }
+}
+
+.text-input,
+.author-input {
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  min-height: 40px;
+  max-height: 100px;
+  border: 1px solid #999;
+  padding: 5px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.input-label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.box {
+  margin-bottom: 15px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.submit {
+  width: 100px;
+  height: 40px;
+  color: #fff;
+  font-size: 15px;
+  background: rgba(26, 90, 188, 0.83);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
 }

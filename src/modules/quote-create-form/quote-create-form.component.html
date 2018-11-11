@@ -1,21 +1,22 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div>
-    <label>Текст:</label>
-    <br>
-    <textarea formControlName="text"></textarea>
+<form [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+      class="create-form">
+  <h3 class="title">Добавить цитату</h3>
+  <div class="box">
+    <label class="input-label">Автор:</label>
+    <input formControlName="author" class="author-input"/>
   </div>
-  <div>
-    <label>Автор:</label>
-    <br>
-    <input formControlName="author"/>
+  <div class="box">
+    <label class="input-label">Текст:</label>
+    <textarea formControlName="text" class="text-input"></textarea>
   </div>
-  <div class="error">
+  <div class="box error">
     <p>
-      Обязательно заполните текст и автора цитаты.
+      Обязательно заполните текст и автора цитаты.<br>
       Длина текста >=2 && <=256, длина автора >=2 && <=64
     </p>
   </div>
-  <div>
-    <button>Создать</button>
+  <div class="box">
+    <button class="submit">Создать</button>
   </div>
 </form>
