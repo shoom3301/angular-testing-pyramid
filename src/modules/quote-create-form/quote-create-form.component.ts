@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {QuotesCreate} from '@store/actions/quotes.action';
@@ -6,7 +6,8 @@ import {QuotesCreate} from '@store/actions/quotes.action';
 @Component({
   selector: 'quote-create-form',
   templateUrl: './quote-create-form.component.html',
-  styleUrls: ['./quote-create-form.component.less']
+  styleUrls: ['./quote-create-form.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuotesCreateFormComponent {
   form = new FormGroup({
