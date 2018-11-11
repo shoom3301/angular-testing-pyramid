@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/index';
 import {select, Store} from '@ngrx/store';
 import {getQuoteById} from '@store/selectors/quotes.selector';
 import {IQuote} from '@models/qoute.model';
-import {first} from 'rxjs/internal/operators';
+import {first} from 'rxjs/operators';
 import {QuotesFetchOne} from '@store/actions/quotes.action';
 
 @Injectable({

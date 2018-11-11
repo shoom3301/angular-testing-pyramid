@@ -10,7 +10,7 @@ import {filter} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class QuotesResolver implements Resolve<IQuote[]> {
+export class QuotesResolver implements Resolve<Observable<IQuote[]>> {
   constructor(private store: Store<any>) {
   }
 
