@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
+import {QuotesCreate} from '@store/actions/quotes.action';
 
 @Component({
   selector: 'quote-create-form',
@@ -31,7 +32,8 @@ export class QuotesCreateFormComponent {
 
     const {text, author} = this.form.value;
 
-    // this.store.dispatch();
-    console.log(text, author);
+    this.store.dispatch(new QuotesCreate(text, author));
+
+    this.form.reset();
   }
 }

@@ -6,6 +6,7 @@ export enum QuotesActionTypes {
   FETCHED_ALL = '[Quotes] Fetched all',
   FETCH_ONE = '[Quotes] Fetch one',
   FETCHED_ONE = '[Quotes] Fetched one',
+  CREATE = '[Quotes] Create',
 }
 
 export class QuotesFetchAll implements Action {
@@ -30,7 +31,15 @@ export class QuotesFetchedOne implements Action {
   constructor(public readonly quote: IQuote) {}
 }
 
+export class QuotesCreate implements Action {
+  readonly type = QuotesActionTypes.CREATE;
+
+  constructor(public readonly text: string,
+              public readonly author: string) {}
+}
+
 export type QuotesActions = QuotesFetchAll
   | QuotesFetchedAll
   | QuotesFetchOne
-  | QuotesFetchedOne;
+  | QuotesFetchedOne
+  | QuotesCreate;
