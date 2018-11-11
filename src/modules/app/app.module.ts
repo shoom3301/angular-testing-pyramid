@@ -9,6 +9,8 @@ import {environment} from '../../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
 import {effects} from '@store/effects';
 import {HttpClientModule} from '@angular/common/http';
+import {QuotesService} from '@services/quotes.service';
+// import {QuotesMockService} from '@services/quotesMock.service';
 
 const storeDevTools = [];
 
@@ -29,7 +31,9 @@ if (!environment.production) {
     ...storeDevTools
   ],
   providers: [
-    reducersProvider
+    reducersProvider,
+    QuotesService,
+    // {provide: QuotesService, useClass: QuotesMockService} use for load data from mocks
   ],
   bootstrap: [
     AppComponent
