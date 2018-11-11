@@ -2,9 +2,14 @@ import {readFileSync, writeFileSync} from 'fs';
 import {IncomingMessage, ServerResponse} from 'http';
 import {resolve} from 'path';
 import {parse} from 'querystring';
-import {IQuote} from './quote.model';
 
 interface IQuoteCreateRequest {
+  text: string;
+  author: string;
+}
+
+interface IQuote {
+  id: number;
   text: string;
   author: string;
 }
@@ -117,7 +122,7 @@ class QuotesController {
   }
 
   private saveQuotes(quotes: IQuote[]) {
-    writeFileSync(quotesFilePath, JSON.stringify(quotes));
+    writeFileSync(quotesFilePath, JSON.stringify(quotes, undefined, 4));
   }
 
   private sendJson(res: ServerResponse, json: any) {

@@ -1,7 +1,7 @@
 import {IncomingMessage, ServerResponse} from 'http';
-import {quotesController} from './controller';
+import {quotesController} from './quotesController';
 
-export interface IRoute {
+interface IRoute {
   (req: IncomingMessage, res: ServerResponse): void;
 }
 
