@@ -12,13 +12,13 @@ import {QuotesCreate} from '@store/actions/quotes.action';
 export class QuotesCreateFormComponent {
   form = new FormGroup({
     text: new FormControl('', [
-      Validators.max(256),
-      Validators.min(2),
+      Validators.maxLength(256),
+      Validators.minLength(2),
       Validators.required
     ]),
     author: new FormControl('', [
-      Validators.max(64),
-      Validators.min(2),
+      Validators.maxLength(64),
+      Validators.minLength(2),
       Validators.required
     ])
   });
