@@ -1,6 +1,8 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {IQuote} from '@models/qoute.model';
+import {mergeMap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'quotes',
@@ -9,7 +11,7 @@ import {IQuote} from '@models/qoute.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuotesComponent {
-  quotesSource$ = this.router.data;
+  quotesSource$: Observable<IQuote[]> = this.router.data.pipe(mergeMap(({quotes}) => quotes));
   createFormIsClosed = false;
 
   constructor(private router: ActivatedRoute) {

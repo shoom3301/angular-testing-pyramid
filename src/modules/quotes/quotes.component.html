@@ -1,6 +1,6 @@
 <h3 class="title">Цитаты великих людей</h3>
 <div class="quotes-list">
-  <a *ngFor="let quote of (quotesSource$ | async).quotes | async"
+  <a *ngFor="let quote of quotesSource$ | async"
      routerLink="/quote/{{quote.id}}"
      class="quote-item">
     <span class="quote-text">{{quote.text}}</span>
