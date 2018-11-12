@@ -5,13 +5,10 @@ import {TestBed} from '@angular/core/testing';
 import {reducersProvider, reducersToken} from '@store/reducers';
 import {QuotesFetchedOne, QuotesFetchOne} from '@store/actions/quotes.action';
 import {ActivatedRouteSnapshot} from '@angular/router';
+import {quotesMock} from '@mocks/qoutes.mock';
 
 describe('QuoteResolver - определяет данные для страницы цитаты', () => {
-  const expectedQuote: IQuote = {
-    id: 5,
-    text: 'text',
-    author: 'author'
-  };
+  const expectedQuote: IQuote = quotesMock[2];
   const route = new ActivatedRouteSnapshot();
   const state = null;
 
