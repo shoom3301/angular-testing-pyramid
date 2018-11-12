@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {QuotesCreate} from '@store/actions/quotes.action';
@@ -10,6 +10,8 @@ import {QuotesCreate} from '@store/actions/quotes.action';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuotesCreateFormComponent {
+  @Output() onClose = new EventEmitter<boolean>();
+
   form = new FormGroup({
     text: new FormControl('', [
       Validators.maxLength(256),

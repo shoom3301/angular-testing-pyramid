@@ -10,7 +10,16 @@ import {IQuote} from '@models/qoute.model';
 })
 export class QuotesComponent {
   quotesSource$ = this.router.data;
+  createFormIsClosed = false;
 
   constructor(private router: ActivatedRoute) {
+  }
+
+  close() {
+    this.createFormIsClosed = true;
+  }
+
+  open() {
+    this.createFormIsClosed = false;
   }
 }

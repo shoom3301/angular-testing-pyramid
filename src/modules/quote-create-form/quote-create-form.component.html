@@ -1,7 +1,10 @@
 <form [formGroup]="form"
       (ngSubmit)="onSubmit()"
       class="create-form">
-  <h3 class="title">Добавить цитату</h3>
+  <div class="box">
+    <h3 class="title">Добавить цитату</h3>
+    <button class="close" (click)="onClose.next()">X</button>
+  </div>
   <div class="box">
     <label class="input-label">Автор:</label>
     <input formControlName="author" class="author-input"/>

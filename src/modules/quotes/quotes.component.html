@@ -8,4 +8,10 @@
     <span class="quote-author">{{quote.author}}</span>
   </a>
 </div>
-<quote-create-form></quote-create-form>
+<div>
+  <button *ngIf="createFormIsClosed"
+          (click)="open()"
+          class="add-quote-btn">Добавить цитату</button>
+</div>
+<quote-create-form *ngIf="!createFormIsClosed"
+                   (onClose)="close()"></quote-create-form>
