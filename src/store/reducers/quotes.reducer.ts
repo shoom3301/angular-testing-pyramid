@@ -30,6 +30,6 @@ export function quotesReducer(state: IQuotesState = quotesInitialState,
   }
 }
 
-function sortQuotes(quotes: IQuote[]): IQuote[] {
+export function sortQuotes(quotes: IQuote[]): IQuote[] {
   return quotes.sort((q1, q2) => q1.id - q2.id);
 }
