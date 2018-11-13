@@ -36,3 +36,15 @@ export class QuotesMockService implements IQuotesService {
     return minId + 1;
   }
 }
+
+export function getLastQuote(): IQuote {
+  let lastQuote = quotesMock[0];
+
+  for (let quote of quotesMock) {
+    if (quote.id > lastQuote.id) {
+      lastQuote = quote;
+    }
+  }
+
+  return lastQuote;
+}

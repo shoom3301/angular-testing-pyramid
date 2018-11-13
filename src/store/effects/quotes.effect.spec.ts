@@ -4,7 +4,7 @@ import {TestBed} from '@angular/core/testing';
 import {ReplaySubject} from 'rxjs';
 import {QuotesCreate, QuotesFetchAll, QuotesFetchedAll, QuotesFetchedOne, QuotesFetchOne} from '@store/actions/quotes.action';
 import {QuotesService} from '@services/quotes.service';
-import {QuotesMockService} from '@services/quotesMock.service';
+import {getLastQuote, QuotesMockService} from '@services/quotesMock.service';
 import {quotesMock} from '@mocks/qoutes.mock';
 
 describe('QuotesEffect - сайдэффекты на события цитат', () => {
@@ -70,7 +70,7 @@ describe('QuotesEffect - сайдэффекты на события цитат',
     expect(createSpy).toHaveBeenCalledTimes(1);
     expect(createSpy).toHaveBeenCalledWith(text, author);
     expect(expectedResult).toEqual(new QuotesFetchedOne({
-      id: 4, // TODO get last id from quotesMock
+      id: getLastQuote().id,
       text,
       author
     }));
