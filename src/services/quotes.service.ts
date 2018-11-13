@@ -23,6 +23,6 @@ export class QuotesService implements IQuotesService {
   }
 
   create(text: string, author: string): Observable<IQuote> {
-    return this.httpClient.post<IQuote>('/api/quote', JSON.stringify({text, author}));
+    return this.httpClient.post<IQuote>('/api/quote', {text, author});
   }
 }

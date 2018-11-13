@@ -100,7 +100,7 @@ describe('QuotesService - сервис работы с api цитат', () => {
       .then(done, done.fail);
   });
 
-  xit('create() - создание цитаты', done => { // FIXME
+  it('create() - создание цитаты', done => {
     const quote = quotesMock[0];
     const interaction: InteractionObject = {
       state: 'Создание цитаты',
@@ -110,12 +110,13 @@ describe('QuotesService - сервис работы с api цитат', () => {
         path: '/api/quote',
         query: '',
         headers: {
-          Accept: 'application/json, text/plain, */*'
+          Accept: 'application/json, text/plain, */*',
+          'content-type': 'application/json'
         },
-        body: Matchers.like({
+        body: {
           text: quote.text,
           author: quote.author
-        })
+        }
       },
       willRespondWith: {
         status: 200,
