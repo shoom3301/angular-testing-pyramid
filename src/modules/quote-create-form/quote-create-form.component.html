@@ -13,7 +13,7 @@
     <label class="input-label">Текст:</label>
     <textarea formControlName="text" class="text-input"></textarea>
   </div>
-  <div class="box error">
+  <div *ngIf="form.invalid && !form.pristine" class="box error">
     <p>
       Обязательно заполните текст и автора цитаты.<br>
       Длина текста >=2 && <=256, длина автора >=2 && <=64

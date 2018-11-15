@@ -1,10 +1,12 @@
 import {NgModule} from '@angular/core';
 import {QuotesCreateFormComponent} from './quote-create-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   declarations: [
     QuotesCreateFormComponent
