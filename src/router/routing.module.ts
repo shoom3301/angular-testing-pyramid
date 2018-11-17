@@ -6,7 +6,7 @@ import {QuoteResolver} from '@router/resolvers/quote.resolver';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: '@modules/quotes/quotes-page.module#QuotesPageModule',
+    loadChildren: '@modules/quotes-page/quotes-page.module#QuotesPageModule',
     resolve: {
       quotes: QuotesResolver
     }
