@@ -1,0 +1,7 @@
+<a *ngFor="let quote of quotes"
+   routerLink="/quote/{{quote.id}}"
+   class="quote-item">
+  <span class="quote-text">{{quote.text}}</span>
+  <br>
+  <span class="quote-author">{{quote.author}}</span>
+</a>

@@ -5,9 +5,9 @@ import {mergeMap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
 @Component({
-  selector: 'quotes',
-  templateUrl: './quotes.component.html',
-  styleUrls: ['./quotes.component.less'],
+  selector: 'quotes-page',
+  templateUrl: './quotes-page.component.html',
+  styleUrls: ['./quotes-page.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuotesComponent {
