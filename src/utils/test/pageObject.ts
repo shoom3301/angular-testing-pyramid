@@ -16,6 +16,12 @@ export class PageObject<T> {
     return debugElement.query(By.css(selector));
   }
 
+  getElementsBySelector(selector: string, element?: DebugElement): DebugElement[] {
+    const debugElement = element || this.debugElement;
+
+    return debugElement.queryAll(By.css(selector));
+  }
+
   triggerClick(selector: string | DebugElement, event: Event = new MouseEvent('click')) {
     const element = this.resolveSelector(selector);
 
@@ -28,6 +34,14 @@ export class PageObject<T> {
 
     return element && element.nativeElement
       ? element.nativeElement.value
+      : '';
+  }
+
+  getElementText(selector: string | DebugElement): string {
+    const element = this.resolveSelector(selector);
+
+    return element && element.nativeElement
+      ? element.nativeElement.textContent
       : '';
   }
 

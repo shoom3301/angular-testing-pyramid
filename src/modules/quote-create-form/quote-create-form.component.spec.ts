@@ -1,7 +1,7 @@
 import {QuotesCreateFormComponent} from '@modules/quote-create-form/quote-create-form.component';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {QuotesCreateFormModule} from '@modules/quote-create-form/quote-create-form.module';
-import {PageObject} from '../../utils/test/pageObject';
+import {PageObject} from '@utils/test/pageObject';
 import {Store} from '@ngrx/store';
 import {anything, capture, instance, mock, verify} from 'ts-mockito';
 import {DebugElement} from '@angular/core';
