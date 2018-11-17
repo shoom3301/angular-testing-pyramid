@@ -2,7 +2,13 @@ import {QuotesEffect} from '@store/effects/quotes.effect';
 import {provideMockActions} from '@ngrx/effects/testing';
 import {TestBed} from '@angular/core/testing';
 import {ReplaySubject} from 'rxjs';
-import {QuotesCreate, QuotesFetchAll, QuotesFetchedAll, QuotesFetchedOne, QuotesFetchOne} from '@store/actions/quotes.action';
+import {
+  QuotesCreate,
+  QuotesFetchAll,
+  QuotesFetchedAll,
+  QuotesFetchedOne,
+  QuotesFetchOne
+} from '@store/actions/quotes.action';
 import {QuotesService} from '@services/quotes.service';
 import {getLastQuote, QuotesMockService} from '@services/quotesMock.service';
 import {quotesMock} from '@mocks/qoutes.mock';

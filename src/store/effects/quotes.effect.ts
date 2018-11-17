@@ -1,7 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {
-  QuotesActionTypes, QuotesCreate, QuotesFetchedAll, QuotesFetchedOne,
+  QuotesActionTypes,
+  QuotesCreate,
+  QuotesFetchedAll,
+  QuotesFetchedOne,
   QuotesFetchOne
 } from '@store/actions/quotes.action';
 import {switchMap} from 'rxjs/operators';

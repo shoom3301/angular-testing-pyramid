@@ -3,7 +3,8 @@ import {DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
 
 export class PageObject<T> {
-  constructor(protected fixture: ComponentFixture<T>) {}
+  constructor(protected fixture: ComponentFixture<T>) {
+  }
 
   get debugElement(): DebugElement {
     return this.fixture.debugElement;
@@ -26,8 +27,8 @@ export class PageObject<T> {
     const element = this.resolveSelector(selector);
 
     return element && element.nativeElement
-        ? element.nativeElement.value
-        : '';
+      ? element.nativeElement.value
+      : '';
   }
 
   setInputValue(selector: string | DebugElement, value: string) {

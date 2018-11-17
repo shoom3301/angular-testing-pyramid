@@ -1,4 +1,4 @@
-import { Action } from '@ngrx/store';
+import {Action} from '@ngrx/store';
 import {IQuote} from '@models/qoute.model';
 
 export enum QuotesActionTypes {
@@ -16,26 +16,30 @@ export class QuotesFetchAll implements Action {
 export class QuotesFetchedAll implements Action {
   readonly type = QuotesActionTypes.FETCHED_ALL;
 
-  constructor(public readonly quotes: IQuote[]) {}
+  constructor(public readonly quotes: IQuote[]) {
+  }
 }
 
 export class QuotesFetchOne implements Action {
   readonly type = QuotesActionTypes.FETCH_ONE;
 
-  constructor(public readonly id: number) {}
+  constructor(public readonly id: number) {
+  }
 }
 
 export class QuotesFetchedOne implements Action {
   readonly type = QuotesActionTypes.FETCHED_ONE;
 
-  constructor(public readonly quote: IQuote) {}
+  constructor(public readonly quote: IQuote) {
+  }
 }
 
 export class QuotesCreate implements Action {
   readonly type = QuotesActionTypes.CREATE;
 
   constructor(public readonly text: string,
-              public readonly author: string) {}
+              public readonly author: string) {
+  }
 }
 
 export type QuotesActions = QuotesFetchAll

@@ -3,7 +3,8 @@
 <div>
   <button *ngIf="createFormIsClosed"
           (click)="open()"
-          class="add-quote-btn">Добавить цитату</button>
+          class="add-quote-btn">Добавить цитату
+  </button>
 </div>
 <quote-create-form *ngIf="!createFormIsClosed"
                    (onClose)="close()"></quote-create-form>

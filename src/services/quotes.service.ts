@@ -5,7 +5,9 @@ import {HttpClient} from '@angular/common/http';
 
 export interface IQuotesService {
   getQuotesList(): Observable<IQuote[]>;
+
   getQuoteById(id: number): Observable<IQuote>;
+
   create(text: string, author: string): Observable<IQuote>;
 }
 
