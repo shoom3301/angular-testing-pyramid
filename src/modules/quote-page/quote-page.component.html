@@ -1,3 +1,5 @@
-<h1 class="text">{{quote.text}}</h1>
-<p class="author">{{quote.author}}</p>
+<div *ngIf="quoteSource$ | async as quote">
+  <h1 class="text">{{quote.text}}</h1>
+  <p class="author">{{quote.author}}</p>
+</div>
 <a routerLink="/" class="back">Вернуться к списку</a>

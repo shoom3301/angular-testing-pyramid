@@ -1,6 +1,8 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {IQuote} from '@models/qoute.model';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'quote-page',
@@ -9,8 +11,8 @@ import {IQuote} from '@models/qoute.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuotePageComponent {
-  quote = this.router.snapshot.data.quote as IQuote;
+  quoteSource$: Observable<IQuote> = this.route.data.pipe(map(({quote}) => quote));
 
-  constructor(private router: ActivatedRoute) {
+  constructor(private route: ActivatedRoute) {
   }
 }
