@@ -5,7 +5,7 @@ import {QuotesListModule} from '@modules/quotes-list/quotes-list.module';
 import {quotesMock} from '@mocks/qoutes.mock';
 import {RouterTestingModule} from '@angular/router/testing';
 import {Location} from '@angular/common';
-import {BlankComponent} from '@utils/test/blank.component';
+import {BlankComponent, BlankModule} from '@utils/test/blank.component';
 
 describe('QuotesListComponent - компонент списка цитат', async () => {
   const [firstQuote] = quotesMock;
@@ -18,14 +18,12 @@ describe('QuotesListComponent - компонент списка цитат', asy
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
+        BlankModule,
         QuotesListModule,
         RouterTestingModule.withRoutes([{
           path: 'quote/:id',
           component: BlankComponent
         }])
-      ],
-      declarations: [
-        BlankComponent
       ]
     }).compileComponents();
 

@@ -10,11 +10,11 @@ import {Observable} from 'rxjs';
   styleUrls: ['./quotes-page.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class QuotesComponent {
-  quotesSource$: Observable<IQuote[]> = this.router.data.pipe(mergeMap(({quotes}) => quotes));
+export class QuotesPageComponent {
+  quotesSource$: Observable<IQuote[]> = this.route.data.pipe(mergeMap(({quotes}) => quotes));
   createFormIsClosed = false;
 
-  constructor(private router: ActivatedRoute) {
+  constructor(private route: ActivatedRoute) {
   }
 
   close() {
