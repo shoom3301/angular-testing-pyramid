@@ -24,10 +24,10 @@ class QuotesController {
   }
 
   getOne(req: IncomingMessage, res: ServerResponse) {
-    const [,query] = (req.url || '').split('?');
+    const [, query] = (req.url || '').split('?');
     const params = parse(query);
-    const id = parseInt(params.id as string);
-    const requestIsValid = !isNaN(id) && id >=0 && id <= 9999999;
+    const id = parseInt(params.id as string, 10);
+    const requestIsValid = !isNaN(id) && id >= 0 && id <= 9999999;
 
     if (!requestIsValid) {
       res.statusCode = 400;
@@ -94,7 +94,7 @@ class QuotesController {
   }
 
   private async getRequestJson<T>(req: IncomingMessage): Promise<T> {
-    return new Promise<T>((resolve, reject) => {
+    return new Promise<T>((onResolve, onReject) => {
       let buffer = '';
 
       req.on('data', (chunk: string) => {
@@ -105,15 +105,15 @@ class QuotesController {
         try {
           const json = JSON.parse(buffer);
 
-          resolve(json);
+          onResolve(json);
         } catch (e) {
-          reject(new Error('Request json parse error'));
+          onReject(new Error('Request json parse error'));
         }
       });
 
       req.on('error', error => {
-        reject(error);
-      })
+        onReject(error);
+      });
     });
   }
 
