@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {IQuote} from '@models/qoute.model';
-import {Observable, of} from 'rxjs/index';
+import {Observable, of} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 import {QuotesFetchAll} from '@store/actions/quotes.action';
 import {getQuotes} from '@store/selectors/quotes.selector';

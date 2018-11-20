@@ -5,7 +5,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {QuotePageComponent} from '@modules/quote-page/quote-page.component';
 import {QuotePageModule} from '@modules/quote-page/quote-page.module';
 import {ActivatedRoute} from '@angular/router';
-import {of} from 'rxjs/index';
+import {of} from 'rxjs';
 import {Location} from '@angular/common';
 
 describe('QuotePageComponent - компонент страницы цитаты', async () => {

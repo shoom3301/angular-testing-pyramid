@@ -1,4 +1,4 @@
-import {Observable, of} from 'rxjs/index';
+import {Observable, of} from 'rxjs';
 import {quotesMock} from '@mocks/qoutes.mock';
 import {IQuote} from '@models/qoute.model';
 import {IQuotesService} from '@services/quotes.service';

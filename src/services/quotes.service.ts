@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/index';
+import {Observable} from 'rxjs';
 import {IQuote} from '@models/qoute.model';
 import {HttpClient} from '@angular/common/http';
 
