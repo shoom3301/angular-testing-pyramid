@@ -5,10 +5,11 @@ const port = 8041;
 
 const server = createServer((req: IncomingMessage, res: ServerResponse) => {
   const [path] = (req.url || '').split('?');
-  const route = `${req.method} ${path}`;
+  const routeName = `${req.method} ${path}`;
+  const route = routes[routeName];
 
-  if (routes[route]) {
-    return routes[route](req, res);
+  if (route) {
+    return route(req, res);
   }
 
   res.statusCode = 404;
