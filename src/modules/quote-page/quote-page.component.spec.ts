@@ -8,7 +8,7 @@ import {ActivatedRoute} from '@angular/router';
 import {of} from 'rxjs';
 import {Location} from '@angular/common';
 
-describe('QuotePageComponent - компонент страницы цитаты', async () => {
+describe('QuotePageComponent - компонент страницы цитаты', () => {
   const [firstQuote] = quotesMock;
 
   let fixture: ComponentFixture<QuotePageComponent>;

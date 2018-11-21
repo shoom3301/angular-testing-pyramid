@@ -5,14 +5,14 @@ import {quotesMock} from '@mocks/qoutes.mock';
 import {IQuote} from '@models/qoute.model';
 
 describe('quotesReducer - редьюсер цитат', () => {
-  it('При событии QuotesFetchedAll заменяет весь список цитат', () => {
+  it('При событии QuotesFetchedAll заменяет весь список цитат', async () => {
     const state: IQuotesState = {quotes: []};
     const newState = quotesReducer(state, new QuotesFetchedAll(quotesMock));
 
     expect(newState).toEqual({quotes: quotesMock});
   });
 
-  it('При событии QuotesFetchedOne добавляет цитату в список', () => {
+  it('При событии QuotesFetchedOne добавляет цитату в список', async () => {
     const quote: IQuote = {
       id: 6,
       text: 'Test me pls',
@@ -24,7 +24,7 @@ describe('quotesReducer - редьюсер цитат', () => {
     expect(newState).toEqual({quotes: [quote]});
   });
 
-  it('При событии QuotesFetchedOne, если цитата с таким же id уже есть, то state не меняется', () => {
+  it('При событии QuotesFetchedOne, если цитата с таким же id уже есть, то state не меняется', async () => {
     const quote: IQuote = {
       id: 6,
       text: 'Test me pls',
@@ -36,7 +36,7 @@ describe('quotesReducer - редьюсер цитат', () => {
     expect(newState).toBe(state);
   });
 
-  it('При событии QuotesFetchedOne добавляет цитату в список и сортирует этот список', () => {
+  it('При событии QuotesFetchedOne добавляет цитату в список и сортирует этот список', async () => {
     const quote1: IQuote = {
       id: 1,
       text: 'Test me pls 1',

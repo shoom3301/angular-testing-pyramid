@@ -18,7 +18,7 @@ describe('QuotesEffect - сайдэффекты на события цитат',
   let effects: QuotesEffect;
   let quotesService: QuotesService;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       providers: [
         QuotesEffect,
@@ -31,7 +31,7 @@ describe('QuotesEffect - сайдэффекты на события цитат',
     quotesService = TestBed.get(QuotesService);
   });
 
-  it('При событии QuotesFetchAll запрашивается список цитат и создается событие QuotesFetchedAll', () => {
+  it('При событии QuotesFetchAll запрашивается список цитат и создается событие QuotesFetchedAll', async () => {
     const getQuotesListSpy = spyOn(quotesService, 'getQuotesList').and.callThrough();
     let expectedResult: QuotesFetchedAll;
 
@@ -45,7 +45,7 @@ describe('QuotesEffect - сайдэффекты на события цитат',
     expect(expectedResult).toEqual(new QuotesFetchedAll(quotesMock));
   });
 
-  it('При событии QuotesFetchOne запрашивается цитата и создается событие QuotesFetchedOne', () => {
+  it('При событии QuotesFetchOne запрашивается цитата и создается событие QuotesFetchedOne', async () => {
     const id = 1;
     const getQuoteByIdSpy = spyOn(quotesService, 'getQuoteById').and.callThrough();
     let expectedResult: QuotesFetchedOne;
@@ -61,7 +61,7 @@ describe('QuotesEffect - сайдэффекты на события цитат',
     expect(expectedResult).toEqual(new QuotesFetchedOne(quotesMock.find(quote => quote.id === id)));
   });
 
-  it('При событии QuotesCreate цитата отправляется на сервер и создается событие QuotesFetchedOne', () => {
+  it('При событии QuotesCreate цитата отправляется на сервер и создается событие QuotesFetchedOne', async () => {
     const text = 'Test me please';
     const author = 'Me';
     const createSpy = spyOn(quotesService, 'create').and.callThrough();

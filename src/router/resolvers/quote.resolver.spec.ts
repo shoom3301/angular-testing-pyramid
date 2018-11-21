@@ -17,7 +17,7 @@ describe('QuoteResolver - определяет данные для страни�
   let quoteResolver: QuoteResolver;
   let store: Store<any>;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot(reducersToken)
@@ -32,7 +32,7 @@ describe('QuoteResolver - определяет данные для страни�
     store = TestBed.get(Store);
   });
 
-  it('Создает событие QuotesFetchOne, для загрузки данных с сервера', () => {
+  it('Создает событие QuotesFetchOne, для загрузки данных с сервера', async () => {
     const storeDispatchSpy = spyOn(store, 'dispatch').and.callThrough();
     const expectedAction = new QuotesFetchOne(expectedQuote.id);
 
@@ -46,7 +46,7 @@ describe('QuoteResolver - определяет данные для страни�
     );
   });
 
-  it('Получает цитату из store по заданному в роутере id', () => {
+  it('Получает цитату из store по заданному в роутере id', async () => {
     let quote: IQuote = null;
 
     store.dispatch(new QuotesFetchedOne(expectedQuote));
@@ -62,7 +62,7 @@ describe('QuoteResolver - определяет данные для страни�
     );
   });
 
-  it('Если в store нет нужной цитаты, то ожидает ее появления (filter)', () => {
+  it('Если в store нет нужной цитаты, то ожидает ее появления (filter)', async () => {
     let quote: IQuote = null;
 
     store.dispatch(new QuotesFetchedOne({

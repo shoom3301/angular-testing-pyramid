@@ -10,7 +10,7 @@ import {quotesMock} from '@mocks/qoutes.mock';
 import {RouterTestingModule} from '@angular/router/testing';
 import {BlankModule} from '@utils/test/blank.component';
 
-describe('QuotesPageComponent - компонент страницы со списком цитат и формой создания цитаты', async () => {
+describe('QuotesPageComponent - компонент страницы со списком цитат и формой создания цитаты', () => {
   let fixture: ComponentFixture<QuotesPageComponent>;
   let component: QuotesPageComponent;
   let pageObject: PageObject<QuotesPageComponent>;

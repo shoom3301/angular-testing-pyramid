@@ -7,7 +7,7 @@ import {anything, capture, instance, mock, verify} from 'ts-mockito';
 import {DebugElement} from '@angular/core';
 import {QuotesCreate} from '@store/actions/quotes.action';
 
-describe('QuotesCreateFormComponent - компонент формы создания цитаты', async () => {
+describe('QuotesCreateFormComponent - компонент формы создания цитаты', () => {
   let fixture: ComponentFixture<QuotesCreateFormComponent>;
   let component: QuotesCreateFormComponent;
   let pageObject: PageObject<QuotesCreateFormComponent>;
@@ -41,51 +41,51 @@ describe('QuotesCreateFormComponent - компонент формы создан
     let textInput: DebugElement;
     let submitButton: DebugElement;
 
-    beforeEach(() => {
+    beforeEach(async () => {
       authorInput = pageObject.getElementBySelector('.author-input');
       textInput = pageObject.getElementBySelector('.text-input');
       submitButton = pageObject.getElementBySelector('.submit');
     });
 
-    it('По-умолчанию текст ошибки валидации не отображается', () => {
+    it('По-умолчанию текст ошибки валидации не отображается', async () => {
       const errorElement = pageObject.getElementBySelector('.error');
 
       expect(errorElement).toBeFalsy('Текст ошибки по-умолчанию должен быть скрыт');
     });
 
     describe('Ошибка валидации отображается если:', () => {
-      it('Длинна имени автора менее 2 символов', () => {
+      it('Длинна имени автора менее 2 символов', async () => {
         pageObject.setInputValue(authorInput, 'A');
 
         expect(getErrorElement()).toBeTruthy();
       });
 
-      it('Длинна текста менее 2 символов', () => {
+      it('Длинна текста менее 2 символов', async () => {
         pageObject.setInputValue(textInput, 'B');
 
         expect(getErrorElement()).toBeTruthy();
       });
 
-      it('Длинна имени автора более 64 символов', () => {
+      it('Длинна имени автора более 64 символов', async () => {
         pageObject.setInputValue(authorInput, 'c'.repeat(65));
 
         expect(getErrorElement()).toBeTruthy();
       });
 
-      it('Длинна текста более 256 символов', () => {
+      it('Длинна текста более 256 символов', async () => {
         pageObject.setInputValue(textInput, 'd'.repeat(257));
 
         expect(getErrorElement()).toBeTruthy();
       });
 
-      it('Автор незаполнен', () => {
+      it('Автор незаполнен', async () => {
         pageObject.setInputValue(authorInput, 'e');
         pageObject.setInputValue(authorInput, '');
 
         expect(getErrorElement()).toBeTruthy();
       });
 
-      it('Текст незаполнен', () => {
+      it('Текст незаполнен', async () => {
         pageObject.setInputValue(textInput, 'f');
         pageObject.setInputValue(textInput, '');
 
@@ -94,12 +94,12 @@ describe('QuotesCreateFormComponent - компонент формы создан
     });
 
     describe('Ошибка валидации скрывается если', () => {
-      beforeEach(() => {
+      beforeEach(async () => {
         pageObject.setInputValue(authorInput, 'a');
         pageObject.setInputValue(authorInput, '');
       });
 
-      it('Длинна имени автора > 2 & < 64 и длинна текст > 2 & < 256', () => {
+      it('Длинна имени автора > 2 & < 64 и длинна текст > 2 & < 256', async () => {
         expect(getErrorElement()).toBeTruthy();
 
         pageObject.setInputValue(authorInput, 'test');

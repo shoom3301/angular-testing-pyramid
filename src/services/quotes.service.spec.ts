@@ -14,13 +14,13 @@ describe('QuotesService - сервис работы с api цитат', () => {
     provider = new PactWeb(PACT_CONFIG);
   });
 
-  beforeEach(done => {
+  beforeEach(async done => {
     provider
       .removeInteractions()
       .then(done, done.fail);
   });
 
-  afterAll(done => {
+  afterAll(async done => {
     provider
       .finalize()
       .then(done, done.fail);
@@ -40,7 +40,7 @@ describe('QuotesService - сервис работы с api цитат', () => {
     quotesService = TestBed.get(QuotesService);
   });
 
-  it('getQuotesList() - запрашивает список цитат из api', done => {
+  it('getQuotesList() - запрашивает список цитат из api', async done => {
     const quote = quotesMock[0];
     const interaction: InteractionObject = {
       state: 'Получение списка цитат',
@@ -69,7 +69,7 @@ describe('QuotesService - сервис работы с api цитат', () => {
       .then(done, done.fail);
   });
 
-  it('getQuoteById() - запрашивает цитату по id', done => {
+  it('getQuoteById() - запрашивает цитату по id', async done => {
     const quote = quotesMock[0];
     const interaction: InteractionObject = {
       state: 'Получение цитаты по id',
@@ -100,7 +100,7 @@ describe('QuotesService - сервис работы с api цитат', () => {
       .then(done, done.fail);
   });
 
-  it('create() - создание цитаты', done => {
+  it('create() - создание цитаты', async done => {
     const quote = quotesMock[0];
     const interaction: InteractionObject = {
       state: 'Создание цитаты',

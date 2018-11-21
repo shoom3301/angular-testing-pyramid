@@ -7,7 +7,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {Location} from '@angular/common';
 import {BlankComponent, BlankModule} from '@utils/test/blank.component';
 
-describe('QuotesListComponent - компонент списка цитат', async () => {
+describe('QuotesListComponent - компонент списка цитат', () => {
   const [firstQuote] = quotesMock;
 
   let fixture: ComponentFixture<QuotesListComponent>;

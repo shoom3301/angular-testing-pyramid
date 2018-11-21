@@ -16,7 +16,7 @@ describe('QuotesResolver - определяет данные для страни
   let quotesResolver: QuotesResolver;
   let store: Store<any>;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot(reducersToken)
@@ -31,7 +31,7 @@ describe('QuotesResolver - определяет данные для страни
     store = TestBed.get(Store);
   });
 
-  it('Создает событие QuotesFetchAll, для загрузки данных с сервера', () => {
+  it('Создает событие QuotesFetchAll, для загрузки данных с сервера', async () => {
     const storeDispatchSpy = spyOn(store, 'dispatch').and.callThrough();
     const expectedAction = new QuotesFetchAll();
 
@@ -45,7 +45,7 @@ describe('QuotesResolver - определяет данные для страни
     );
   });
 
-  it('Получает Observable со списоком цитат из store', () => {
+  it('Получает Observable со списоком цитат из store', async () => {
     let quotes: IQuote[] = null;
 
     store.dispatch(new QuotesFetchedAll(expectedQuotes));
@@ -62,7 +62,7 @@ describe('QuotesResolver - определяет данные для страни
     );
   });
 
-  it('Observable со списоком цитат может присылать новые данные', () => {
+  it('Observable со списоком цитат может присылать новые данные', async () => {
     let quotes: IQuote[] = null;
 
     store.dispatch(new QuotesFetchedAll([expectedQuotes[0]]));
