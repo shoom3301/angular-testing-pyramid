@@ -1,6 +1,6 @@
 import {QuotesListPO} from './quotesList.po';
 import {QuotesFormPO} from './quotesForm.po';
-import {QuotePagePO} from './quotepage.po';
+import {QuotePagePO} from './quotePage.po';
 
 describe('Цитаты великих людей', () => {
   let quotesListPO: QuotesListPO;
@@ -35,13 +35,13 @@ describe('Цитаты великих людей', () => {
 
   it('При клике на цитату должна открываться страница этой цитаты', async () => {
     const firstQuote = quotesListPO.quotes.first();
-    const text = quotesListPO.getQuoteText(firstQuote);
-    const author = quotesListPO.getQuoteAuthor(firstQuote);
+    const text = await quotesListPO.getQuoteText(firstQuote);
+    const author = await quotesListPO.getQuoteAuthor(firstQuote);
 
     await firstQuote.click();
     await quotePagePO.waitForQuotePage();
 
-    expect(quotePagePO.getQuoteText()).toBe(text);
-    expect(quotePagePO.getQuoteAuthor()).toBe(author);
+    expect(await quotePagePO.getQuoteText()).toBe(text);
+    expect(await quotePagePO.getQuoteAuthor()).toBe(author);
   });
 });
