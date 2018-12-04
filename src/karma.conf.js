@@ -1,7 +1,39 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
-const {pactConfig} = require('../pact.config.js');
+const path = require('path');
+const process = require('process');
+const {pactConfig} = require('../pact/pact.config');
+
+function configurePactProvider(config) {
+  const commonConfiguration = {
+    cors: true,
+    dir: 'pact/pacts',
+    spec: 2,
+    logLevel: 'DEBUG',
+    log: path.resolve(process.cwd(), 'pact/log', `${config.provider}.log`),
+    pactfileWriteMode: true
+  };
+
+  return {
+    ...commonConfiguration,
+    ...config
+  };
+}
+
+function pactKarmaConfig(config) {
+  config.set({
+    frameworks: config.frameworks.concat('pact'),
+    plugins: config.plugins.concat('@pact-foundation/karma-pact'),
+    pact: [
+      configurePactProvider(pactConfig),
+    ],
+    proxies: {
+      '/api': `http://localhost:${pactConfig.port}/api/`
+    }
+
+  });
+}
 
 module.exports = function (config) {
   config.set({
@@ -31,5 +63,5 @@ module.exports = function (config) {
     singleRun: false
   });
 
-  pactConfig(config);
+  pactKarmaConfig(config);
 };

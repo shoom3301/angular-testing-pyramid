@@ -5,11 +5,11 @@
     "ng": "ng",
     "start": "ng serve --aot",
     "build": "ng build",
-    "pretest": "rimraf pact",
     "test": "ng test",
     "test:coverage": "ng test --watch=false --code-coverage",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "pact:publish": "node pact/pact.publish.js"
   },
   "private": true,
   "dependencies": {

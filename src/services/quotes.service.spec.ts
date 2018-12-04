@@ -1,17 +1,18 @@
 import {QuotesService} from '@services/quotes.service';
-import {PACT_CONFIG} from '../pact.heplers';
 import {TestBed} from '@angular/core/testing';
 import {HttpClientModule} from '@angular/common/http';
 import {InteractionObject} from '@pact-foundation/pact-web/dsl/interaction';
 import {Matchers, PactWeb} from '@pact-foundation/pact-web';
 import {quotesMock} from '@mocks/qoutes.mock';
 
+const {pactConfig} = require('../../pact/pact.config');
+
 describe('QuotesService - сервис работы с api цитат', () => {
   let provider: PactWeb;
   let quotesService: QuotesService;
 
   beforeAll(async () => {
-    provider = new PactWeb(PACT_CONFIG);
+    provider = new PactWeb(pactConfig);
   });
 
   beforeEach(async done => {

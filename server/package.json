@@ -5,11 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node src/index.ts"
+    "pact:provider": "ts-node test/pact-provider.spec.ts",
+    "proxy:provider": "node test/api.proxy.js",
+    "start": "ts-node src/index.ts",
+    "pact:ci": "npm-run-all -p start proxy:provider pact:provider"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@pact-foundation/karma-pact": "^2.1.9",
+    "@pact-foundation/pact-node": "^6.20.0",
+    "http-proxy-middleware": "^0.19.1",
+    "npm-run-all": "^4.1.5",
     "ts-node": "^7.0.1"
   },
   "dependencies": {
