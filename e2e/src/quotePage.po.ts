@@ -2,7 +2,7 @@ import {browser, ElementFinder, ExpectedConditions} from 'protractor';
 
 export class QuotePagePO {
   get quotePage(): ElementFinder {
-    return browser.$('quote-page');
+    return browser.$('app-quote-page');
   }
 
   get quoteText(): ElementFinder {
@@ -22,6 +22,10 @@ export class QuotePagePO {
   }
 
   async waitForQuotePage(): Promise<void> {
-    browser.wait(ExpectedConditions.presenceOf(this.quotePage), browser.params.timeout);
+    browser.wait(
+      ExpectedConditions.presenceOf(this.quotePage),
+      browser.params.timeout,
+      'Не дождались загрузки страницы цитаты'
+    );
   }
 }

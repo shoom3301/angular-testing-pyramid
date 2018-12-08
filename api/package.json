@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "pact:provider": "ts-node test/pact-provider.spec.ts",
-    "proxy:provider": "node test/api.proxy.js",
+    "proxy:pact": "node test/api.proxy.js",
     "start": "ts-node src/index.ts",
-    "pact:ci": "npm-run-all -p start proxy:provider pact:provider"
+    "start:ci": "ts-node src/index.ts"
   },
   "author": "",
   "license": "ISC",
