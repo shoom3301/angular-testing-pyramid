@@ -16,7 +16,7 @@ export class QuoteResolver implements Resolve<IQuote> {
 
   resolve(route: ActivatedRouteSnapshot,
           state: RouterStateSnapshot): Observable<IQuote> {
-    const id = parseInt(route.params.id);
+    const id = parseInt(route.params.id, 10);
 
     this.store.dispatch(new QuotesFetchOne(id));
 

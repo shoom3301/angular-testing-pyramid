@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
 @Component({
-  selector: 'quote-page',
+  selector: 'app-quote-page',
   templateUrl: './quote-page.component.html',
   styleUrls: ['./quote-page.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush

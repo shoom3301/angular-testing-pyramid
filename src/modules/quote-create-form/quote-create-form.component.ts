@@ -4,13 +4,13 @@ import {Store} from '@ngrx/store';
 import {QuotesCreate} from '@store/actions/quotes.action';
 
 @Component({
-  selector: 'quote-create-form',
+  selector: 'app-quote-create-form',
   templateUrl: './quote-create-form.component.html',
   styleUrls: ['./quote-create-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuotesCreateFormComponent {
-  @Output() onClose = new EventEmitter<boolean>();
+  @Output() close = new EventEmitter<boolean>();
 
   form = new FormGroup({
     text: new FormControl('', [

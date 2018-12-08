@@ -14,11 +14,11 @@ import {BadRequestError} from '../models/BadRequestError';
 import {IQuoteCreateRequest} from '../models/IQuoteCreateRequest';
 import {Routes} from '../models/Routes';
 
-async function quotesGetList() {
+async function quotesGetList(): Promise<IQuote[]> {
   return loadQuotes();
 }
 
-async function quotesGetOne(req: IncomingMessage) {
+async function quotesGetOne(req: IncomingMessage): Promise<IQuote | null> {
   const id = getRequestQuoteId(req);
   const quoteIdIsValid = validateQuoteId(id);
 
@@ -31,7 +31,7 @@ async function quotesGetOne(req: IncomingMessage) {
   return findQuoteById(quotes, id);
 }
 
-async function quotesCreate(req: IncomingMessage) {
+async function quotesCreate(req: IncomingMessage): Promise<IQuote> {
   const quoteCreateRequest = await getRequestJson<IQuoteCreateRequest>(req);
   const createQuoteRequestIsValid = validateQuoteCreateRequest(quoteCreateRequest);
 

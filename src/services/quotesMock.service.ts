@@ -40,7 +40,7 @@ export class QuotesMockService implements IQuotesService {
 export function getLastQuote(): IQuote {
   let lastQuote = quotesMock[0];
 
-  for (let quote of quotesMock) {
+  for (const quote of quotesMock) {
     if (quote.id > lastQuote.id) {
       lastQuote = quote;
     }

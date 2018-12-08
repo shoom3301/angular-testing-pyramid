@@ -1,10 +1,10 @@
 <h3 class="title">Цитаты великих людей</h3>
-<quotes-list [quotes]="quotesSource$ | async"></quotes-list>
+<app-quotes-list [quotes]="quotesSource$ | async"></app-quotes-list>
 <div>
   <button *ngIf="createFormIsClosed"
           (click)="open()"
           class="add-quote-btn">Добавить цитату
   </button>
 </div>
-<quote-create-form *ngIf="!createFormIsClosed"
-                   (onClose)="close()"></quote-create-form>
+<app-quote-create-form *ngIf="!createFormIsClosed"
+                       (close)="close()"></app-quote-create-form>

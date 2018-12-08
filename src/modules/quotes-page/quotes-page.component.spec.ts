@@ -59,7 +59,7 @@ describe('QuotesPageComponent - компонент страницы со спи�
   });
 
   it('Форма создания цитаты по-умолчанию открыта', async () => {
-    expect(pageObject.getElementBySelector('quote-create-form')).toBeTruthy(
+    expect(pageObject.getElementBySelector('app-quote-create-form')).toBeTruthy(
       'По-умолчанию, форма создания должна быть открыта'
     );
   });
@@ -67,7 +67,7 @@ describe('QuotesPageComponent - компонент страницы со спи�
   it('При клике на кнопку "X" - форма закрывается', async () => {
     pageObject.triggerClick('.close');
 
-    expect(pageObject.getElementBySelector('quote-create-form')).toBeFalsy(
+    expect(pageObject.getElementBySelector('app-quote-create-form')).toBeFalsy(
       'Форма не должна отображаться, если кликнули на кнопку "закрыть"'
     );
   });
@@ -76,7 +76,7 @@ describe('QuotesPageComponent - компонент страницы со спи�
     pageObject.triggerClick('.close');
     pageObject.triggerClick('.add-quote-btn');
 
-    expect(pageObject.getElementBySelector('quote-create-form')).toBeTruthy(
+    expect(pageObject.getElementBySelector('app-quote-create-form')).toBeTruthy(
       'Форма должна отображаться, если кликнули на кнопку "Добавить цитату"'
     );
   });
