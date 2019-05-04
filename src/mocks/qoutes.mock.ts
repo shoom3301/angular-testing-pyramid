@@ -3,17 +3,17 @@ import {IQuote} from '@models/qoute.model';
 export const quotesMock: IQuote[] = [
   {
     id: 1,
-    text: 'Достал нож - режь',
-    author: 'Дядя Ваня'
+    text: 'Hakuna matata!',
+    author: 'Pumba'
   },
   {
     id: 2,
-    text: 'Не служил - не мужик',
-    author: 'Саныч'
+    text: 'Developers developers developers!',
+    author: 'Steve Ballmer'
   },
   {
     id: 3,
-    text: 'Если драка неизбежна - бей первым',
-    author: 'В.В. Путин'
+    text: 'Just do it!',
+    author: 'Shia LaBeouf'
   }
 ];
