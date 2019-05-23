@@ -16,8 +16,8 @@ describe('QuotePageComponent - quote page component', () => {
   let pageObject: PageObject<QuotePageComponent>;
   let location: Location;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach( () => {
+    TestBed.configureTestingModule({
       imports: [
         QuotePageModule,
         RouterTestingModule

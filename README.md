@@ -1,27 +1,90 @@
-# AngularTestingPyramid
+## Angular testing pyramid
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.5.
+|        Main page (quotes list)      |              Quote page               |
+| ----------------------------------- | ------------------------------------- |
+| ![main page](assets/main_page.png)  | ![quote_page](assets/quote_page.png)  |
 
-## Development server
+### Actions:
+1. The quotes list display
+2. Open/close the "add quote" form
+3. Create new quote (+ form validation)
+4. Open the quote page
+5. Back to the main page
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Tests (e2e / integration / contract / unit)
 
-## Code scaffolding
+#### E2E:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+##### [Quotes app:](e2e/src/app.e2e.ts)
 
-## Build
+1. A list of quotes should be displayed on the page
+2. The created quote should be appended to list
+3. Quote page should be opened on click to quote item
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+#### Integration:
 
-## Running unit tests
+##### [Quote page:](src/modules/quote-page/quote-page.component.spec.ts)
+1. Displayed text of quote is correct
+2. Displayed author of quote is correct
+3. Page should be changed to main on click to "To quotes list"
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+##### [Main page:](src/modules/quotes-page/quotes-page.component.spec.ts)
+1. Title of page contains correct text
+2. Quotes list is displayed and count of displayed quotes matches the input data
+3. Quote create form is opened by default
+4. Form is closing when "X" button is clicked
+5. Form is opening when "Create quote" button is clicked
 
-## Running end-to-end tests
+##### [Quotes list:](src/modules/quotes-list/quotes-list.component.spec.ts)
+1. Count of displayed quotes matches the input data
+2. Text of first quote is correct
+3. Author of first quote is correct
+4. First quote item have link to its page
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+##### [Quote create form:](src/modules/quote-create-form/quote-create-form.component.spec.ts)
+1. Text of error validation is not displayed by default
+2. Validation error is displayed, when:
+    1. Author name length less than 2 characters
+    2. Text less than 2 characters
+    3. Author name length greater than 64 characters
+    4. Text length greater than 256 characters
+    5. Author is not filled
+    6.Text is not filled
+3. Validation error is not displayed, when:
+    1. length of author name > 2 & < 64 and length of text > 2 & < 256
+4. Form submitting
+    1. When form is valid
+        1. The entered data is sent
+        2. Fields of form cleans
+    4. When form is not valid
+        1. The entered data is not sent
 
-## Further help
+#### Contract:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+##### [Quotes API:](src/services/quotes.service.spec.ts)
+1. loadQuotesList() - requests a list of quotes
+2. loadQuote() - requests quote by id
+3. createQuote() - quote creating
+
+#### Unit:
+
+##### [Store effects:](src/store/effects/quotes.effect.spec.ts)
+1. When QuotesFetchAll is triggered, a list of quotes is requested and the QuotesFetchedAll event is created
+2. When QuotesFetchOne is triggered, a quote is requested and the QuotesFetchedOne event is created
+3. When QuotesCreate is triggered, the quote is sent to the server and the QuotesFetchedOne event is created
+
+##### [Store reducers:](src/store/reducers/quotes.reducer.spec.ts)
+1. QuotesFetchedAll must replace quotes list in store
+2. QuotesFetchedOne must append quote to the list in store
+3. QuotesFetchedOne must do not append quote to the list in store, if quote is exist in list
+4. QuotesFetchedOne must append quote to the list in store, if quote is not exist in list
+
+##### [Quote page resolver:](src/router/resolvers/quote.resolver.spec.ts)
+1. Creates QuotesFetchOne action, for loading data from server
+2. Gives quote from store by id from router
+3. If the store does not have the expected quote, then it expects its appearance (filter)
+
+##### [Quotes page resolver:](src/router/resolvers/quotes.resolver.spec.ts)
+1. Creates QuotesFetchAll action, for loading data from server
+2. Gives Observable with quotes list from store
+3. Observable with a list of quotes can send new data
