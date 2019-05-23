@@ -36,7 +36,7 @@ async function quotesCreate(req: IncomingMessage): Promise<IQuote> {
   const createQuoteRequestIsValid = validateQuoteCreateRequest(quoteCreateRequest);
 
   if (!createQuoteRequestIsValid) {
-    throw new BadRequestError('Quote create request is not valid!');
+    throw new BadRequestError('Quote createQuote request is not valid!');
   }
 
   const quotes = loadQuotes();

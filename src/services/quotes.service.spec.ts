@@ -7,7 +7,7 @@ import {quotesMock} from '@mocks/qoutes.mock';
 
 const {pactConfig} = require('../../pact/pact.config');
 
-describe('QuotesService - сервис работы с api цитат', () => {
+describe('QuotesService - Http requests to quotes API', () => {
   let provider: PactWeb;
   let quotesService: QuotesService;
 
@@ -41,11 +41,11 @@ describe('QuotesService - сервис работы с api цитат', () => {
     quotesService = TestBed.get(QuotesService);
   });
 
-  it('getQuotesList() - запрашивает список цитат из api', async done => {
+  it('loadQuotesList() - requests a list of quotes', async done => {
     const quote = quotesMock[0];
     const interaction: InteractionObject = {
-      state: 'Получение списка цитат',
-      uponReceiving: 'Список цитат',
+      state: 'Requests quotes list',
+      uponReceiving: 'Quotes list',
       withRequest: {
         method: 'GET',
         path: '/api/quotes',
@@ -65,16 +65,16 @@ describe('QuotesService - сервис работы с api цитат', () => {
 
     provider
       .addInteraction(interaction)
-      .then(() => quotesService.getQuotesList().toPromise())
+      .then(() => quotesService.loadQuotesList().toPromise())
       .then(() => provider.verify())
       .then(done, done.fail);
   });
 
-  it('getQuoteById() - запрашивает цитату по id', async done => {
+  it('loadQuote() - requests quote by id', async done => {
     const quote = quotesMock[0];
     const interaction: InteractionObject = {
-      state: 'Получение цитаты по id',
-      uponReceiving: 'Цитата по id',
+      state: 'Requests quote by id',
+      uponReceiving: 'Quote by id',
       withRequest: {
         method: 'GET',
         path: '/api/quote',
@@ -96,16 +96,16 @@ describe('QuotesService - сервис работы с api цитат', () => {
 
     provider
       .addInteraction(interaction)
-      .then(() => quotesService.getQuoteById(quote.id).toPromise())
+      .then(() => quotesService.loadQuote(quote.id).toPromise())
       .then(() => provider.verify())
       .then(done, done.fail);
   });
 
-  it('create() - создание цитаты', async done => {
+  it('createQuote() - quote creating', async done => {
     const quote = quotesMock[0];
     const interaction: InteractionObject = {
-      state: 'Создание цитаты',
-      uponReceiving: 'Цитата',
+      state: 'Quote creating',
+      uponReceiving: 'Quote',
       withRequest: {
         method: 'POST',
         path: '/api/quote',
@@ -130,7 +130,7 @@ describe('QuotesService - сервис работы с api цитат', () => {
 
     provider
       .addInteraction(interaction)
-      .then(() => quotesService.create(quote.text, quote.author).toPromise())
+      .then(() => quotesService.createQuote(quote.text, quote.author).toPromise())
       .then(() => provider.verify())
       .then(done, done.fail);
   });

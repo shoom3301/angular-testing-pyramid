@@ -13,12 +13,12 @@ import {QuotesService} from '@services/quotes.service';
 import {getLastQuote, QuotesMockService} from '@services/quotesMock.service';
 import {quotesMock} from '@mocks/qoutes.mock';
 
-describe('QuotesEffect - сайдэффекты на события цитат', () => {
+describe('Side-effects for quotes', () => {
   const actions = new ReplaySubject(1);
   let effects: QuotesEffect;
   let quotesService: QuotesService;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         QuotesEffect,
@@ -31,8 +31,8 @@ describe('QuotesEffect - сайдэффекты на события цитат',
     quotesService = TestBed.get(QuotesService);
   });
 
-  it('При событии QuotesFetchAll запрашивается список цитат и создается событие QuotesFetchedAll', async () => {
-    const getQuotesListSpy = spyOn(quotesService, 'getQuotesList').and.callThrough();
+  it('When QuotesFetchAll is triggered, a list of quotes is requested and the QuotesFetchedAll event is created', () => {
+    const getQuotesListSpy = spyOn(quotesService, 'loadQuotesList').and.callThrough();
     let expectedResult: QuotesFetchedAll;
 
     actions.next(new QuotesFetchAll());
@@ -45,9 +45,9 @@ describe('QuotesEffect - сайдэффекты на события цитат',
     expect(expectedResult).toEqual(new QuotesFetchedAll(quotesMock));
   });
 
-  it('При событии QuotesFetchOne запрашивается цитата и создается событие QuotesFetchedOne', async () => {
+  it('When QuotesFetchOne is triggered, a quote is requested and the QuotesFetchedOne event is created', () => {
     const id = 1;
-    const getQuoteByIdSpy = spyOn(quotesService, 'getQuoteById').and.callThrough();
+    const getQuoteByIdSpy = spyOn(quotesService, 'loadQuote').and.callThrough();
     let expectedResult: QuotesFetchedOne;
 
     actions.next(new QuotesFetchOne(id));
@@ -61,10 +61,10 @@ describe('QuotesEffect - сайдэффекты на события цитат',
     expect(expectedResult).toEqual(new QuotesFetchedOne(quotesMock.find(quote => quote.id === id)));
   });
 
-  it('При событии QuotesCreate цитата отправляется на сервер и создается событие QuotesFetchedOne', async () => {
+  it('When QuotesCreate is triggered, the quote is sent to the server and the QuotesFetchedOne event is created', () => {
     const text = 'Test me please';
     const author = 'Me';
-    const createSpy = spyOn(quotesService, 'create').and.callThrough();
+    const createSpy = spyOn(quotesService, 'createQuote').and.callThrough();
     let expectedResult: QuotesFetchedOne;
 
     actions.next(new QuotesCreate(text, author));

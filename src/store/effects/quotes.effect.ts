@@ -16,7 +16,7 @@ export class QuotesEffect {
   onFetchAll$ = this.actions$
     .pipe(
       ofType(QuotesActionTypes.FETCH_ALL),
-      switchMap(() => this.quotesService.getQuotesList()),
+      switchMap(() => this.quotesService.loadQuotesList()),
       switchMap(quotes => [
         new QuotesFetchedAll(quotes)
       ])
@@ -26,7 +26,7 @@ export class QuotesEffect {
   onFetchOne$ = this.actions$
     .pipe(
       ofType(QuotesActionTypes.FETCH_ONE),
-      switchMap(({id}: QuotesFetchOne) => this.quotesService.getQuoteById(id)),
+      switchMap(({id}: QuotesFetchOne) => this.quotesService.loadQuote(id)),
       switchMap(quote => [
         new QuotesFetchedOne(quote)
       ])
@@ -36,7 +36,7 @@ export class QuotesEffect {
   onCreate$ = this.actions$
     .pipe(
       ofType(QuotesActionTypes.CREATE),
-      switchMap(({text, author}: QuotesCreate) => this.quotesService.create(text, author)),
+      switchMap(({text, author}: QuotesCreate) => this.quotesService.createQuote(text, author)),
       switchMap(quote => [
         new QuotesFetchedOne(quote)
       ])

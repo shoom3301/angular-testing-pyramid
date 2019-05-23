@@ -2,7 +2,7 @@ import {QuotesListPO} from './quotesList.po';
 import {QuotesFormPO} from './quotesForm.po';
 import {QuotePagePO} from './quotePage.po';
 
-describe('Цитаты великих людей', () => {
+describe('Quotes app', () => {
   let quotesListPO: QuotesListPO;
   let quotesFormPO: QuotesFormPO;
   let quotePagePO: QuotePagePO;
@@ -15,11 +15,11 @@ describe('Цитаты великих людей', () => {
     await quotesListPO.toMainPage();
   });
 
-  it('На главной странице должен отображаться список цитат', async () => {
+  it('A list of quotes should be displayed on the page', async () => {
     expect(await quotesListPO.getQuotesCount()).toBeGreaterThan(0);
   });
 
-  it('Созданная цитата должна добавляться в конец списка', async () => {
+  it('The created quote should be appended to list', async () => {
     const text = `Dont hurt me (${Date.now()})`;
     const author = 'Hulk';
 
@@ -33,7 +33,7 @@ describe('Цитаты великих людей', () => {
     expect(await quotesListPO.getQuoteText(lastQuote)).toBe(text);
   });
 
-  it('При клике на цитату должна открываться страница этой цитаты', async () => {
+  it('Quote page should be opened on click to quote item', async () => {
     const firstQuote = quotesListPO.quotes.first();
     const text = await quotesListPO.getQuoteText(firstQuote);
     const author = await quotesListPO.getQuoteAuthor(firstQuote);

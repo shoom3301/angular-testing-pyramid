@@ -2,24 +2,24 @@
       (ngSubmit)="onSubmit()"
       class="create-form">
   <div class="box">
-    <h3 class="title">Добавить цитату</h3>
+    <h3 class="title">Add quote</h3>
     <button class="close" (click)="close.next()">X</button>
   </div>
   <div class="box">
-    <label class="input-label">Автор:</label>
+    <label class="input-label">Author:</label>
     <input formControlName="author" class="author-input"/>
   </div>
   <div class="box">
-    <label class="input-label">Текст:</label>
+    <label class="input-label">Text:</label>
     <textarea formControlName="text" class="text-input"></textarea>
   </div>
   <div *ngIf="form.invalid && !form.pristine" class="box error">
     <p>
-      Обязательно заполните текст и автора цитаты.<br>
-      Длина текста >=2 && <=256, длина автора >=2 && <=64
+      Text and author fields is required.<br />
+      Text length must be >=2 && <=256, author length must be >=2 && <=64
     </p>
   </div>
   <div class="box">
-    <button class="submit">Создать</button>
+    <button class="submit">Create</button>
   </div>
 </form>

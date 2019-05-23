@@ -4,15 +4,15 @@ import {IQuote} from '@models/qoute.model';
 import {IQuotesService} from '@services/quotes.service';
 
 export class QuotesMockService implements IQuotesService {
-  getQuotesList(): Observable<IQuote[]> {
+  loadQuotesList(): Observable<IQuote[]> {
     return of(quotesMock);
   }
 
-  getQuoteById(id: number): Observable<IQuote> {
+  loadQuote(id: number): Observable<IQuote> {
     return of(quotesMock.find(quote => quote.id === id));
   }
 
-  create(text: string, author: string): Observable<IQuote> {
+  createQuote(text: string, author: string): Observable<IQuote> {
     const quote: IQuote = {
       id: this.generateId(),
       text,

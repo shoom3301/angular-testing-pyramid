@@ -8,7 +8,7 @@ import {ActivatedRoute} from '@angular/router';
 import {of} from 'rxjs';
 import {Location} from '@angular/common';
 
-describe('QuotePageComponent - компонент страницы цитаты', () => {
+describe('QuotePageComponent - quote page component', () => {
   const [firstQuote] = quotesMock;
 
   let fixture: ComponentFixture<QuotePageComponent>;
@@ -38,28 +38,28 @@ describe('QuotePageComponent - компонент страницы цитаты'
     fixture.detectChanges();
   });
 
-  it('Отображенный текст цитаты соот-ет ожидаемому', async () => {
+  it('Displayed text of quote is correct', () => {
     expect(pageObject.getElementText('.text')).toBe(
       firstQuote.text,
-      'Текст цитаты не соот-ет ожидаемому'
+      'Quotes text is not expected'
     );
   });
 
-  it('Отображенное имя автора цитаты соот-ет ожидаемому', async () => {
+  it('Displayed author of quote is correct', () => {
     expect(pageObject.getElementText('.author')).toBe(
       firstQuote.author,
-      'Имя автора цитаты не соот-ет ожидаемому'
+      'Authors text is not expected'
     );
   });
 
-  it('При клике на "Вернуться к списку" роутит на страницу списка цитат', fakeAsync(() => {
+  it('Page should be changed to main on click to "To quotes list"', fakeAsync(() => {
     pageObject.triggerClick('.back');
 
     tick();
 
     expect(location.path()).toBe(
       '/',
-      'Текущий роут не соот-ет роуту страницы списка цитат'
+      'The current path is not math to the main page path'
     );
   }));
 });

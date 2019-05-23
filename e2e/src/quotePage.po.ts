@@ -24,8 +24,7 @@ export class QuotePagePO {
   async waitForQuotePage(): Promise<void> {
     browser.wait(
       ExpectedConditions.presenceOf(this.quotePage),
-      browser.params.timeout,
-      'Не дождались загрузки страницы цитаты'
+      browser.params.timeout
     );
   }
 }

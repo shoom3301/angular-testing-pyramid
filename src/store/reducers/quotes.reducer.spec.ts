@@ -4,15 +4,15 @@ import {IQuotesState} from '@store/states/quotes.state';
 import {quotesMock} from '@mocks/qoutes.mock';
 import {IQuote} from '@models/qoute.model';
 
-describe('quotesReducer - редьюсер цитат', () => {
-  it('При событии QuotesFetchedAll заменяет весь список цитат', async () => {
+describe('Reducer for quotes', () => {
+  it('QuotesFetchedAll must replace quotes list in store', () => {
     const state: IQuotesState = {quotes: []};
     const newState = quotesReducer(state, new QuotesFetchedAll(quotesMock));
 
     expect(newState).toEqual({quotes: quotesMock});
   });
 
-  it('При событии QuotesFetchedOne добавляет цитату в список', async () => {
+  it('QuotesFetchedOne must append quote to the list in store', () => {
     const quote: IQuote = {
       id: 6,
       text: 'Test me pls',
@@ -24,7 +24,7 @@ describe('quotesReducer - редьюсер цитат', () => {
     expect(newState).toEqual({quotes: [quote]});
   });
 
-  it('При событии QuotesFetchedOne, если цитата с таким же id уже есть, то state не меняется', async () => {
+  it('QuotesFetchedOne must do not append quote to the list in store, if quote is exist in list', () => {
     const quote: IQuote = {
       id: 6,
       text: 'Test me pls',
@@ -36,7 +36,7 @@ describe('quotesReducer - редьюсер цитат', () => {
     expect(newState).toBe(state);
   });
 
-  it('При событии QuotesFetchedOne добавляет цитату в список и сортирует этот список', async () => {
+  it('QuotesFetchedOne must append quote to the list in store, if quote is not exist in list', () => {
     const quote1: IQuote = {
       id: 1,
       text: 'Test me pls 1',

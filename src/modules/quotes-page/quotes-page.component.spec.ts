@@ -10,16 +10,16 @@ import {quotesMock} from '@mocks/qoutes.mock';
 import {RouterTestingModule} from '@angular/router/testing';
 import {BlankModule} from '@utils/test/blank.component';
 
-describe('QuotesPageComponent - компонент страницы со списком цитат и формой создания цитаты', () => {
+describe('QuotesPageComponent - quotes page component', () => {
   let fixture: ComponentFixture<QuotesPageComponent>;
   let component: QuotesPageComponent;
   let pageObject: PageObject<QuotesPageComponent>;
   let storeMock;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     storeMock = mock<Store<any>>(Store);
 
-    await TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [
         QuotesPageModule,
         BlankModule,
@@ -44,40 +44,40 @@ describe('QuotesPageComponent - компонент страницы со спи�
     fixture.detectChanges();
   });
 
-  it('Заголовок страницы содержит корректный текст', async () => {
+  it('Title of page contains correct tex', () => {
     expect(pageObject.getElementText('.title')).toBe(
-      'Цитаты великих людей',
-      'Заголовок страницы не соот-ет ожидаемому'
+      'Quotes app',
+      'Title of page is not expected'
     );
   });
 
-  it('Список цитат отображен и кол-во цитат сопадает с входными данными', async () => {
+  it('Quotes list is displayed and count of displayed quotes matches the input data', () => {
     expect(pageObject.getElementsBySelector('.quote-item').length).toBe(
       quotesMock.length,
-      'Кол-во цитат в списке не соот-ет ожидаемому'
+      'Count of quotes in list is not expected'
     );
   });
 
-  it('Форма создания цитаты по-умолчанию открыта', async () => {
+  it('Quote create form is opened by default', () => {
     expect(pageObject.getElementBySelector('app-quote-create-form')).toBeTruthy(
-      'По-умолчанию, форма создания должна быть открыта'
+      'Form must be opened by default'
     );
   });
 
-  it('При клике на кнопку "X" - форма закрывается', async () => {
+  it('Form is closing when "X" button is clicked', () => {
     pageObject.triggerClick('.close');
 
     expect(pageObject.getElementBySelector('app-quote-create-form')).toBeFalsy(
-      'Форма не должна отображаться, если кликнули на кнопку "закрыть"'
+      'Form must not be displayed, when "close" button is clicked'
     );
   });
 
-  it('При клике на конпку "Добавить цитату" - форма открывается', async () => {
+  it('Form is opening when "Create quote" button is clicked', () => {
     pageObject.triggerClick('.close');
     pageObject.triggerClick('.add-quote-btn');
 
     expect(pageObject.getElementBySelector('app-quote-create-form')).toBeTruthy(
-      'Форма должна отображаться, если кликнули на кнопку "Добавить цитату"'
+      'Form must be displayed, when "add quote" button is clicked'
     );
   });
 });

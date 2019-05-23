@@ -8,7 +8,7 @@ import {QuotesResolver} from '@router/resolvers/quotes.resolver';
 import {quotesMock} from '@mocks/qoutes.mock';
 import {switchMap} from 'rxjs/operators';
 
-describe('QuotesResolver - определяет данные для страницы со списком цитат', () => {
+describe('QuotesResolver - resolves data for quotes page', () => {
   const expectedQuotes: IQuote[] = quotesMock;
   const route = new ActivatedRouteSnapshot();
   const state = null;
@@ -16,7 +16,7 @@ describe('QuotesResolver - определяет данные для страни
   let quotesResolver: QuotesResolver;
   let store: Store<any>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot(reducersToken)
@@ -31,7 +31,7 @@ describe('QuotesResolver - определяет данные для страни
     store = TestBed.get(Store);
   });
 
-  it('Создает событие QuotesFetchAll, для загрузки данных с сервера', async () => {
+  it('Creates QuotesFetchAll action, for loading data from server', () => {
     const storeDispatchSpy = spyOn(store, 'dispatch').and.callThrough();
     const expectedAction = new QuotesFetchAll();
 
@@ -41,11 +41,11 @@ describe('QuotesResolver - определяет данные для страни
 
     expect(action).toEqual(
       expectedAction,
-      'Событие QuotesFetchAll не было создано'
+      'QuotesFetchAll action is not created'
     );
   });
 
-  it('Получает Observable со списоком цитат из store', async () => {
+  it('Gives Observable with quotes list from store', () => {
     let quotes: IQuote[] = null;
 
     store.dispatch(new QuotesFetchedAll(expectedQuotes));
@@ -58,11 +58,11 @@ describe('QuotesResolver - определяет данные для страни
 
     expect(quotes).toEqual(
       expectedQuotes,
-      'Полученные цитата не соот-ют ожидаемым'
+      'Given quotes is nit expected'
     );
   });
 
-  it('Observable со списоком цитат может присылать новые данные', async () => {
+  it('Observable with a list of quotes can send new data', () => {
     let quotes: IQuote[] = null;
 
     store.dispatch(new QuotesFetchedAll([expectedQuotes[0]]));
@@ -75,14 +75,14 @@ describe('QuotesResolver - определяет данные для страни
 
     expect(quotes).toEqual(
       [expectedQuotes[0]],
-      'Полученные цитаты не соот-ют ожидаемым (до отправки новых данных)'
+      'Given quotes is nit expected (before form send)'
     );
 
     store.dispatch(new QuotesFetchedAll(expectedQuotes));
 
     expect(quotes).toEqual(
       expectedQuotes,
-      'Полученные цитаты не соот-ют ожидаемым (после отправки новых данных)'
+      'Given quotes is nit expected (after form send)'
     );
   });
 });

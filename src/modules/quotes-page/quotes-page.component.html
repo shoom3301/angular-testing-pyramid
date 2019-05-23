@@ -1,9 +1,9 @@
-<h3 class="title">Цитаты великих людей</h3>
+<h3 class="title">Quotes app</h3>
 <app-quotes-list [quotes]="quotesSource$ | async"></app-quotes-list>
 <div>
   <button *ngIf="createFormIsClosed"
           (click)="open()"
-          class="add-quote-btn">Добавить цитату
+          class="add-quote-btn">Create quote
   </button>
 </div>
 <app-quote-create-form *ngIf="!createFormIsClosed"

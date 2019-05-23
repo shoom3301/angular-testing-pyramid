@@ -7,7 +7,7 @@ import {QuotesFetchedOne, QuotesFetchOne} from '@store/actions/quotes.action';
 import {ActivatedRouteSnapshot} from '@angular/router';
 import {quotesMock} from '@mocks/qoutes.mock';
 
-describe('QuoteResolver - определяет данные для страницы цитаты', () => {
+describe('QuoteResolver - resolves data for quote page', () => {
   const expectedQuote: IQuote = quotesMock[2];
   const route = new ActivatedRouteSnapshot();
   const state = null;
@@ -17,7 +17,7 @@ describe('QuoteResolver - определяет данные для страни�
   let quoteResolver: QuoteResolver;
   let store: Store<any>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot(reducersToken)
@@ -32,7 +32,7 @@ describe('QuoteResolver - определяет данные для страни�
     store = TestBed.get(Store);
   });
 
-  it('Создает событие QuotesFetchOne, для загрузки данных с сервера', async () => {
+  it('Creates QuotesFetchOne action, for loading data from server', () => {
     const storeDispatchSpy = spyOn(store, 'dispatch').and.callThrough();
     const expectedAction = new QuotesFetchOne(expectedQuote.id);
 
@@ -42,11 +42,11 @@ describe('QuoteResolver - определяет данные для страни�
 
     expect(action).toEqual(
       expectedAction,
-      'Событие QuotesFetchOne не было создано'
+      'QuotesFetchOne action is not created'
     );
   });
 
-  it('Получает цитату из store по заданному в роутере id', async () => {
+  it('Gives quote from store by id from router', () => {
     let quote: IQuote = null;
 
     store.dispatch(new QuotesFetchedOne(expectedQuote));
@@ -58,11 +58,11 @@ describe('QuoteResolver - определяет данные для страни�
 
     expect(quote).toEqual(
       expectedQuote,
-      'Полученная цитата не соот-ет ожидаемой'
+      'Given quote is not expected'
     );
   });
 
-  it('Если в store нет нужной цитаты, то ожидает ее появления (filter)', async () => {
+  it('If the store does not have the expected quote, then it expects its appearance (filter)', () => {
     let quote: IQuote = null;
 
     store.dispatch(new QuotesFetchedOne({
@@ -78,14 +78,14 @@ describe('QuoteResolver - определяет данные для страни�
 
     expect(quote).toBe(
       null,
-      'Цитата должна быть null, если ее нет в store'
+      'Quote must be null, when its not exist in store'
     );
 
     store.dispatch(new QuotesFetchedOne(expectedQuote));
 
     expect(quote).toEqual(
       expectedQuote,
-      'Полученная цитата не соот-ет ожидаемой'
+      'Given quote is not expected'
     );
   });
 });

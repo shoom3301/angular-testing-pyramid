@@ -7,7 +7,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {Location} from '@angular/common';
 import {BlankComponent, BlankModule} from '@utils/test/blank.component';
 
-describe('QuotesListComponent - компонент списка цитат', () => {
+describe('QuotesListComponent - quotes list component', () => {
   const [firstQuote] = quotesMock;
 
   let fixture: ComponentFixture<QuotesListComponent>;
@@ -15,8 +15,8 @@ describe('QuotesListComponent - компонент списка цитат', () 
   let pageObject: PageObject<QuotesListComponent>;
   let location: Location;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [
         BlankModule,
         QuotesListModule,
@@ -37,41 +37,41 @@ describe('QuotesListComponent - компонент списка цитат', () 
     fixture.detectChanges();
   });
 
-  it('Количество отображенных цитат совпадает с входными данными', async () => {
+  it('Count of displayed quotes matches the input data', () => {
     const quotesList = pageObject.getElementsBySelector('.quote-item');
 
     expect(quotesList.length).toBe(
       quotesMock.length,
-      'Кол-во отображенных цитат не совпадает'
+      'Count of displayed quotes is not matches'
     );
   });
 
-  it('Текст первой цитаты соответствует', async () => {
+  it('Text of first quote is correct', () => {
     const quoteText = pageObject.getElementBySelector('.quote-text');
 
     expect(pageObject.getElementText(quoteText)).toBe(
       firstQuote.text,
-      'Текст первой цитаты не соот-ет'
+      'Text of first quote is not correct'
     );
   });
 
-  it('Имя автора первой цитаты соответствует', async () => {
+  it('Author of first quote is correct', () => {
     const quoteAuthor = pageObject.getElementBySelector('.quote-author');
 
     expect(pageObject.getElementText(quoteAuthor)).toBe(
       firstQuote.author,
-      'Имя автора первой цитаты не соот-ет'
+      'Author of first quote is not correct'
     );
   });
 
-  it('При клике на первую цитату роутит на страницу цитаты', fakeAsync(() => {
+  it('First quote item have link to its page', fakeAsync(() => {
     pageObject.triggerClick('a');
 
     tick();
 
     expect(location.path()).toBe(
       `/quote/${firstQuote.id}`,
-      'Текущий роут не соот-ет роуту страницы цитаты'
+      'Current path is not matches with quote path'
     );
   }));
 });
